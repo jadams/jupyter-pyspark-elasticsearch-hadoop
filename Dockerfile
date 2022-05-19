@@ -6,6 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get -yq update \
  && apt-get -yq install --no-install-recommends \
     default-jdk \
+    scala \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
