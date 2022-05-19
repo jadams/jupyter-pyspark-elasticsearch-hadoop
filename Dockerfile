@@ -2,12 +2,15 @@ FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter:master-434b10ab
 
 USER root
 
-RUN curl -s "https://get.sdkman.io" | bash \
- && source "$HOME/.sdkman/bin/sdkman-init.sh" \
- && sdk version \
- && sdk install java 11.0.12-open \
- && sdk install scala 2.12.15 \
- && sdk install spark 3.2.0
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get -yq update \
+ && apt-get -yq install --no-install-recommends \
+    default-jdk \
+ && curl -sL https://downloads.lightbend.com/scala/2.12.15/scala-2.12.15.deb -o /tmp/scala-2.12.15.deb \
+ && dpkg -i /tmp/scala-2.12.15.deb \
+ && apt-get install -f \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 USER $NB_UID
 
