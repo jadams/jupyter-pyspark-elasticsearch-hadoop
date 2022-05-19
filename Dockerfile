@@ -2,13 +2,12 @@ FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter:master-434b10ab
 
 USER root
 
-RUN export DEBIAN_FRONTEND=noninteractive \
- && apt-get -yq update \
- && apt-get -yq install --no-install-recommends \
-    default-jdk \
-    scala \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+RUN curl -s "https://get.sdkman.io" | bash \
+ && source "$HOME/.sdkman/bin/sdkman-init.sh" \
+ && sdk version \
+ && sdk install java 11.0.12-open \
+ && sdk install scala 2.12.15 \
+ && sdk install spark 3.2.0
 
 USER $NB_UID
 
