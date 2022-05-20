@@ -6,11 +6,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get -yq update \
  && apt-get -yq install --no-install-recommends \
     openjdk-8-jdk \
- && curl -sL https://downloads.lightbend.com/scala/${SCALAVER}/scala-${SCALAVER}.deb -o /tmp/scala-${SCALAVER}.deb \
- && dpkg -i /tmp/scala-${SCALAVER}.deb \
- && apt-get install -f \
  && apt-get clean \
- && rm -rf /tmp/scala-${SCALAVER}.deb /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
 USER $NB_UID
 
 ENV ESHADOOPVER 7.16.3
