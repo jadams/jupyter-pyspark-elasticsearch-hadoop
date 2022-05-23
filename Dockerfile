@@ -9,9 +9,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && rm -rf /var/lib/apt/lists/*
 USER $NB_UID
 
-COPY --chown=jovyan:users requirements.txt /tmp/requirements.txt
-RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
- && rm -f /tmp/requirements.txt
+RUN python3 -m pip install --quiet --no-cache-dir "pyspark>=2,<3"
 
 ENV ESHADOOPVER 7.17.0
 RUN curl -sL "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-${ESHADOOPVER}.zip" -o /tmp/elasticsearch-hadoop-${ESHADOOPVER}.zip \
