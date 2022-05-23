@@ -13,6 +13,6 @@ RUN python3 -m pip install --quiet --no-cache-dir "pyspark>=2,<3"
 
 ENV ESHADOOPVER 7.17.0
 RUN curl -sL "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-${ESHADOOPVER}.zip" -o /tmp/elasticsearch-hadoop-${ESHADOOPVER}.zip \
- && unzip /tmp/elasticsearch-hadoop-${ESHADOOPVER}.zip -d /tmp \
+ && unzip -q /tmp/elasticsearch-hadoop-${ESHADOOPVER}.zip -d /tmp \
  && cp /tmp/elasticsearch-hadoop-${ESHADOOPVER}/dist/elasticsearch-hadoop-${ESHADOOPVER}.jar /opt/conda/lib/python3.8/site-packages/pyspark/jars \
  && rm -rf /tmp/elasticsearch-hadoop-${ESHADOOPVER}.zip /tmp/elasticsearch-hadoop-${ESHADOOPVER}
