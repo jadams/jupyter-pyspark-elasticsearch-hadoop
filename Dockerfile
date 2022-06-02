@@ -10,7 +10,7 @@ ARG PIP_VERSION=21.1.2
 ARG PYTHON_VERSION=3.7.10
 ARG ESHADOOP_VERSION=7.17.0
 
-# install -- node.js
+# install -- node.js and openjdk 8
 RUN export DEBIAN_FRONTEND=noninteractive \
  && curl -sL "https://deb.nodesource.com/gpgkey/nodesource.gpg.key" | apt-key add - \
  && echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list \
